@@ -89,7 +89,7 @@ adb shell dumpsys deviceidle whitelist +com.termux +com.termux.api
 
 - Rooted phones fail Play Integrity, so banking apps, tap to pay and some streaming apps may stop working.
 - Anyone who can SSH in as the Termux user can become root. Keep the SSH key private and password login off.
-- A phone on the charger 24/7 wears its battery. A charge limit (for example the ACC Magisk module, around 60 to 80%) helps. Not set up yet.
+- A phone on the charger 24/7 wears its battery. This one is held at 45 to 50% (see below).
 
 ## Fixing Wi-Fi that would not scan
 
@@ -126,9 +126,13 @@ If that is not enough, flash the full firmware from the same build. Its full fla
 
 Packages can still be installed over USB: run a local proxy on the Mac, forward it with `adb reverse tcp:8118 tcp:8118`, and point the package manager at `http://127.0.0.1:8118`. The phone's clock must be right or HTTPS fails.
 
+## Running on it now
+
+- **AdGuard Home**, the network's ad blocker, started at boot by Magisk: [guide 10](../docs/10-adguard-and-battery.md)
+- **Battery held at 45 to 50%** by [`charge-limit.sh`](charge-limit.sh). ACC did not work on this phone; the guide explains why.
+- **Tailscale** (Android app), with "Use Tailscale subnets" turned off
+
 ## Not done yet
 
-- A dashboard (Homepage or Dashy)
-- Termux:Boot for automatic start after reboot
-- Charge limit
-- Backup DNS and watchdog roles (see the main [progress list](../README.md#progress))
+- Termux:Boot, so SSH starts after a reboot without opening Termux
+- A watchdog that alerts if the server goes offline

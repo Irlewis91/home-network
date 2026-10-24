@@ -41,7 +41,13 @@ def load_map():
     return sorted(pairs, key=lambda p: len(p[0]), reverse=True)
 
 
+PUBLIC_IPV6 = re.compile(r"\b2[0-9a-f]{3}:[0-9a-f]{1,4}:[0-9a-f:]+[0-9a-f]\b", re.I)
+
+
 def sanitize(text, pairs):
+    # Whole public IPv6 addresses go first, before the map replaces only their
+    # prefix and leaves the rest of the address behind.
+    text = PUBLIC_IPV6.sub("<public-ipv6>", text)
     for real, placeholder in pairs:
         text = text.replace(real, placeholder)
     for pattern, placeholder in GENERIC:

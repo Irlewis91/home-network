@@ -36,9 +36,12 @@ flowchart LR
 - [x] [Install Ubuntu and hand it over to SSH](docs/06-install-ubuntu.md) (lid ignored, sleep off, key-only SSH)
 - [x] [Reformat the 2TB drive as server storage](docs/07-storage.md)
 - [x] [Unlock the encrypted disk over Wi-Fi from the main Mac](docs/08-remote-unlock.md)
+- [x] [Tailscale: reach everything from anywhere, exit node](docs/09-tailscale.md)
+- [x] [Phone as ad blocker (AdGuard Home), battery held at 45 to 50%](docs/10-adguard-and-battery.md)
+- [x] [Wazuh SIEM, data on the 2TB drive](docs/11-wazuh.md)
+- [ ] Wazuh agent on the main Mac
 - [ ] Firewall and automatic security updates
-- [ ] Docker and the first services (Tailscale, AdGuard Home, Time Machine share, Uptime Kuma)
-- [ ] Phone as backup DNS and watchdog
+- [ ] More services: Time Machine share, Uptime Kuma
 
 ## How these docs are made
 

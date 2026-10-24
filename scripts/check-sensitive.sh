@@ -20,7 +20,7 @@ patterns=$(mktemp)
 trap 'rm -f "$patterns"' EXIT
 [ -f .sensitive-map ] && cut -f1 .sensitive-map | grep -v '^$' > "$patterns"
 
-generic='-----BEGIN [A-Z ]*PRIVATE KEY-----|\b([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}\b|\b192\.168\.[0-9]{1,3}\.[0-9]{1,3}\b|\b10\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\b|\bgh[pousr]_[A-Za-z0-9]{20,}|\bsk-[A-Za-z0-9_-]{20,}'
+generic='-----BEGIN [A-Z ]*PRIVATE KEY-----|\b2[0-9a-fA-F]{3}:[0-9a-fA-F]{1,4}:[0-9a-fA-F]{1,4}:|\b([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}\b|\b192\.168\.[0-9]{1,3}\.[0-9]{1,3}\b|\b10\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\b|\bgh[pousr]_[A-Za-z0-9]{20,}|\bsk-[A-Za-z0-9_-]{20,}'
 
 failed=0
 images=()
