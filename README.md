@@ -33,9 +33,10 @@ flowchart LR
 - [x] [Check the hardware: battery, Wi-Fi chip, USB adapter](docs/04-hardware-check.md)
 - [x] [Android phone as a Linux node](android/README.md) (built earlier, documented here)
 - [x] [Write the Ubuntu installer to the 2TB drive](docs/05-installer-drive.md)
-- [ ] Install Ubuntu Desktop on the old Mac
-- [ ] Run it headless: lid closed, no sleep, firewall, automatic updates
-- [ ] Reformat the 2TB drive as server storage
+- [x] [Install Ubuntu and hand it over to SSH](docs/06-install-ubuntu.md) (lid ignored, sleep off, key-only SSH)
+- [x] [Reformat the 2TB drive as server storage](docs/07-storage.md)
+- [ ] Decide on disk encryption: remote unlock, automatic unlock or none
+- [ ] Firewall and automatic security updates
 - [ ] Docker and the first services (Tailscale, AdGuard Home, Time Machine share, Uptime Kuma)
 - [ ] Phone as backup DNS and watchdog
 

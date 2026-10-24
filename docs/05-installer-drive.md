@@ -86,4 +86,4 @@ On USB 3 the write itself took about 70 seconds at 96 MB/s. The two checksum che
 
 ## Next
 
-Restart the old Mac while holding **Option**. Pick the orange **EFI Boot** icon to start the Ubuntu installer. That part happens on the old Mac's screen and is covered in the next guide.
+Restart the old Mac while holding **Option**. Pick the orange **EFI Boot** icon to start the Ubuntu installer. That part happens on the old Mac's screen and is covered in the next guide: [install Ubuntu](06-install-ubuntu.md).
