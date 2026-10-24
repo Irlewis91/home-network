@@ -1,0 +1,18 @@
+[Unit]
+Description=Early-boot Wi-Fi for remote disk unlock
+DefaultDependencies=no
+After=systemd-udev-trigger.service systemd-udevd.service
+Wants=systemd-udev-trigger.service
+# Stop before the real system starts, so NetworkManager gets the adapter.
+Conflicts=initrd-switch-root.target shutdown.target
+Before=initrd-switch-root.target shutdown.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/wifi-unlock-net start
+ExecStop=/usr/sbin/wifi-unlock-net stop
+TimeoutStartSec=150
+
+[Install]
+WantedBy=initrd.target

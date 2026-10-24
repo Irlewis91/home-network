@@ -35,7 +35,7 @@ flowchart LR
 - [x] [Write the Ubuntu installer to the 2TB drive](docs/05-installer-drive.md)
 - [x] [Install Ubuntu and hand it over to SSH](docs/06-install-ubuntu.md) (lid ignored, sleep off, key-only SSH)
 - [x] [Reformat the 2TB drive as server storage](docs/07-storage.md)
-- [ ] Decide on disk encryption: remote unlock, automatic unlock or none
+- [x] [Unlock the encrypted disk over Wi-Fi from the main Mac](docs/08-remote-unlock.md)
 - [ ] Firewall and automatic security updates
 - [ ] Docker and the first services (Tailscale, AdGuard Home, Time Machine share, Uptime Kuma)
 - [ ] Phone as backup DNS and watchdog

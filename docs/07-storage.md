@@ -46,4 +46,4 @@ What the choices mean:
 
 ## Next
 
-Docker and the first services, with their data on `/srv/storage`.
+[Unlock the encrypted disk over Wi-Fi](08-remote-unlock.md), then Docker and the first services, with their data on `/srv/storage`.

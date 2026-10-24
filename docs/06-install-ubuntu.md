@@ -39,7 +39,7 @@ My install ended up with **full-disk encryption** (LUKS) on the internal SSD. Th
 | No encryption | Comes back by itself |
 | Encryption | Waits for the passphrase, unless you add remote or automatic unlocking |
 
-What I chose to do about it is in the next guide.
+I kept encryption and added remote unlock: [guide 8](08-remote-unlock.md).
 
 ## Step 3: one line to hand it over
 

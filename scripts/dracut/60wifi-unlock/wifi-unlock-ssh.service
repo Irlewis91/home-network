@@ -1,0 +1,16 @@
+[Unit]
+Description=Early-boot SSH that only asks for the disk passphrase
+DefaultDependencies=no
+Requires=wifi-unlock-net.service
+After=wifi-unlock-net.service
+Conflicts=initrd-switch-root.target shutdown.target
+Before=initrd-switch-root.target shutdown.target
+
+[Service]
+# -F foreground, -E log to stderr, -s no passwords, -j/-k no port forwarding,
+# -c every login runs only the passphrase prompt.
+ExecStart=/usr/sbin/dropbear -F -E -s -j -k -p 2222 -r /etc/wifi-unlock/dropbear_ed25519_host_key -c "/usr/bin/systemd-tty-ask-password-agent --query"
+KillMode=process
+
+[Install]
+WantedBy=initrd.target
