@@ -1,0 +1,15 @@
+# Real sensitive values. Never commit.
+.sensitive-map
+
+# Unredacted captures. Only cleaned images in screenshots/ get committed.
+screenshots/raw/
+
+# Large or private files
+*.iso
+*.img
+*.zip
+id_*
+!id_*.md
+.env
+
+.DS_Store
