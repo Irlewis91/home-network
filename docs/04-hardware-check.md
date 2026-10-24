@@ -43,4 +43,4 @@ Some of these adapters first show up as a tiny "driver disc." Ubuntu switches th
 
 While I was checking the adapter, the old Mac stopped answering. It had started a macOS update (12.3 to 12.7.6). Let an update finish: interrupting one can leave the Mac unable to start. Your SSH key survives the update.
 
-Next: write the Ubuntu installer to the 2TB drive (coming next).
+Next: [write the Ubuntu installer to the external drive](05-installer-drive.md).

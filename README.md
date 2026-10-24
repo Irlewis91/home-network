@@ -32,7 +32,7 @@ flowchart LR
 - [x] [Back up the old Mac before wiping it](docs/03-backup.md)
 - [x] [Check the hardware: battery, Wi-Fi chip, USB adapter](docs/04-hardware-check.md)
 - [x] [Android phone as a Linux node](android/README.md) (built earlier, documented here)
-- [ ] Write the Ubuntu installer to the 2TB drive
+- [x] [Write the Ubuntu installer to the 2TB drive](docs/05-installer-drive.md)
 - [ ] Install Ubuntu Desktop on the old Mac
 - [ ] Run it headless: lid closed, no sleep, firewall, automatic updates
 - [ ] Reformat the 2TB drive as server storage
