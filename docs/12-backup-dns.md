@@ -61,6 +61,10 @@ Same answers as the phone, and the same 191,610 blocking rules.
 
 In **login.tailscale.com/admin/dns** → **Add nameserver** → **Custom** → the server's **Tailscale** address, with **Restrict to domain** off. Both nameservers then appear under **Global nameservers**, and `tailscale dns status` lists both under **Resolvers**.
 
+### Failover test
+
+With both listed, I stopped the phone's AdGuard Home on purpose (`kill $(pidof AdGuardHome)` as root) and looked up names on the main Mac straight away. `wikipedia.org` still resolved and `doubleclick.net` still came back `0.0.0.0`, answered by the server. The phone's boot script restarted its AdGuard about 10 seconds later.
+
 ## Keeping them in step
 
 The copy is a snapshot. If you add a blocklist or allow a site on one, do the same on the other, or copy the YAML again (Step 3) and restart with `sudo systemctl restart AdGuardHome`. The tool **adguardhome-sync** can automate that later.
