@@ -66,5 +66,47 @@ Store it in a password manager.
 
 The manager monitors the server itself from the start (agent `000`). Other devices need the Wazuh agent:
 
-- **Main Mac:** the macOS agent package, pointed at the server. (Next step.)
+- **Main Mac:** below.
 - **Android:** there is no Wazuh agent for Android. Its logs can be forwarded later over syslog.
+
+## Step 5: the agent on the main Mac
+
+Download the Apple Silicon package and check that it is genuine before installing:
+
+```bash
+curl -fsSL -O https://packages.wazuh.com/4.x/macos/wazuh-agent-4.14.9-1.arm64.pkg
+pkgutil --check-signature wazuh-agent-4.14.9-1.arm64.pkg   # Developer ID Installer: Wazuh Inc, notarized
+```
+
+Point it at the server's **Tailscale** address, so the Mac keeps reporting when it is away from home, then install:
+
+```bash
+echo "WAZUH_MANAGER='<server-tailscale-ip>'" > /tmp/wazuh_envs
+echo "WAZUH_AGENT_NAME='m3-macbook'" >> /tmp/wazuh_envs
+sudo installer -pkg wazuh-agent-4.14.9-1.arm64.pkg -target /
+sudo /Library/Ossec/bin/wazuh-control start
+```
+
+### If the installer says "Upgrading"
+
+Mine did, because a Wazuh agent had been installed on this Mac long ago. On an upgrade, the settings in `/tmp/wazuh_envs` are **ignored** and the old `/Library/Ossec/etc/ossec.conf` is kept. Mine still held the placeholder, so the agent stopped with:
+
+```
+wazuh-agentd: ERROR: (4112): Invalid server address found: 'MANAGER_IP'
+```
+
+Fix it by editing the file directly (a backup first):
+
+```bash
+sudo cp /Library/Ossec/etc/ossec.conf /Library/Ossec/etc/ossec.conf.before-fix
+sudo perl -0pi -e 's#<address>MANAGER_IP</address>#<address><server-tailscale-ip></address>#' /Library/Ossec/etc/ossec.conf
+sudo /Library/Ossec/bin/wazuh-control restart
+```
+
+The old file also had no enrollment section, so the agent registered under the Mac's computer name instead of `m3-macbook`. Wazuh cannot rename an agent; changing the name means removing it on the server and enrolling it again.
+
+![The main Mac reporting to Wazuh](../screenshots/19-wazuh-agents.png)
+
+### A note on enrollment
+
+The all-in-one install accepts new agents on port 1515 **without a password**. Here the server is reachable only from the home network and Tailscale, so that is acceptable. To require one, set `<use_password>yes</use_password>` in the `<auth>` section of `/var/ossec/etc/ossec.conf` on the server and put the password in `/var/ossec/etc/authd.pass`.

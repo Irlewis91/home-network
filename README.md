@@ -39,7 +39,7 @@ flowchart LR
 - [x] [Tailscale: reach everything from anywhere, exit node](docs/09-tailscale.md)
 - [x] [Phone as ad blocker (AdGuard Home), battery held at 45 to 50%](docs/10-adguard-and-battery.md)
 - [x] [Wazuh SIEM, data on the 2TB drive](docs/11-wazuh.md)
-- [ ] Wazuh agent on the main Mac
+- [x] [Wazuh agent on the main Mac](docs/11-wazuh.md#step-5-the-agent-on-the-main-mac)
 - [ ] Firewall and automatic security updates
 - [ ] More services: Time Machine share, Uptime Kuma
 
