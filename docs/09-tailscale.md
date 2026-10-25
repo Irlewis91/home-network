@@ -50,6 +50,25 @@ At **login.tailscale.com/admin/machines**, on the server's **⋯** menu:
 
 ![Three devices on Tailscale](../screenshots/15-tailscale.png)
 
+### Keep the phone's Tailscale running
+
+The phone answers DNS for every Tailscale device, so its Tailscale must never be asleep or off:
+
+- **Battery:** exempt the app from battery optimization, as root: `dumpsys deviceidle whitelist +com.tailscale.ipn`
+- **After a restart:** Settings → Network & internet → VPN → ⚙️ Tailscale → **Always-on VPN** on. Leave "Block connections without VPN" off.
+
+### Checking every device
+
+From the main Mac:
+
+```bash
+tailscale status                      # every device online?
+tailscale ping homeserver             # "pong ... via <address>" means a direct connection
+tailscale dns status | sed -n '/Resolvers/,/^$/p'   # the phone listed as the resolver
+```
+
+iPhones and iPads often appear as `localhost`, because iOS hides the device name from apps. Rename them in the admin page (⋯ → **Edit machine name**) so they are easy to tell apart, and remove any device you do not recognize.
+
 ### Why the phone must not use the subnet route
 
 The phone lives on the home network and answers DNS for it ([guide 10](10-adguard-and-battery.md)). With "Use Tailscale subnets" on, Android sends all traffic for `192.168.0.x` into Tailscale, including the phone's **replies** to DNS questions from other home devices. Those replies took a detour through the server and never arrived. Lookups over UDP simply timed out, while TCP still worked, which made it confusing to spot.
