@@ -103,7 +103,22 @@ sudo perl -0pi -e 's#<address>MANAGER_IP</address>#<address><server-tailscale-ip
 sudo /Library/Ossec/bin/wazuh-control restart
 ```
 
-The old file also had no enrollment section, so the agent registered under the Mac's computer name instead of `m3-macbook`. Wazuh cannot rename an agent; changing the name means removing it on the server and enrolling it again.
+### Renaming the agent
+
+The old file also had no `<enrollment>` section, so the agent registered under the Mac's computer name (which includes my name) instead of `m3-macbook`. Wazuh cannot rename an agent in place. Remove it on the server and enroll it again:
+
+```bash
+# On the server: remove the old entry (use its ID from agent_control -l)
+echo y | sudo /var/ossec/bin/manage_agents -r 001
+```
+
+On the Mac, [`scripts/rename-wazuh-agent-macos.sh`](../scripts/rename-wazuh-agent-macos.sh) stops the agent, backs up `ossec.conf`, adds an `<enrollment>` section with the new `<agent_name>`, empties `client.keys` so the agent asks for a new identity, and starts it again:
+
+```bash
+sudo bash rename-wazuh-agent-macos.sh
+```
+
+It shows up as **Pending** for a few seconds, then **Active** under a new ID.
 
 ![The main Mac reporting to Wazuh](../screenshots/19-wazuh-agents.png)
 
