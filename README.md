@@ -41,7 +41,7 @@ flowchart LR
 - [x] [Wazuh SIEM, data on the 2TB drive](docs/11-wazuh.md)
 - [x] [Wazuh agent on the main Mac](docs/11-wazuh.md#step-5-the-agent-on-the-main-mac)
 - [x] [Backup ad-blocking DNS on the server](docs/12-backup-dns.md)
-- [ ] Firewall and automatic security updates
+- [x] [Firewall and automatic security updates](docs/13-firewall-and-updates.md)
 - [ ] More services: Time Machine share, Uptime Kuma
 
 ## How these docs are made
